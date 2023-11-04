@@ -12,6 +12,7 @@ drawSquares(actualRow);
 listenInput(actualRow);
 addFocus(actualRow);
 
+
 function listenInput(actualRow) {
   let squares = actualRow.querySelectorAll(".square");
   squares = [...squares];
@@ -35,14 +36,7 @@ function listenInput(actualRow) {
         // compararemos array para cambiar los estilos
 
         if (rigthIndex.length == wordArray.length) {
-          resultElement.innerHTML = `<p>Ganaste</p>
-            <button class="button">Reiniciar</button>`;
-
-          let resetBtn = document.querySelector(".button");
-          resetBtn.addEventListener("click", () => {
-            location.reload();
-          });
-
+          showResult('ganaste')
           return;
         }
 
@@ -51,10 +45,11 @@ function listenInput(actualRow) {
         drawSquares(actualRow);
         listenInput(actualRow);
         addFocus(actualRow);
+      
 
         // cambiar estilos si existe letra pero no esta en poaicion correcta
 
-        let existIndexArray = existLetter(wordArray, userInput);
+       let existIndexArray = existLetter(wordArray, userInput);
 
         existIndexArray.forEach((element) => {
           squares[element].classList.add("gold");
@@ -91,11 +86,16 @@ function existLetter(array1, array2) {
 
 function createRow() {
   rowId++;
-  let newRow = document.createElement("div");
-  newRow.classList.add("row");
-  newRow.setAttribute("id", rowId);
-  mainContainer.appendChild(newRow);
-  return newRow;
+  if(rowId <= 5){
+    let newRow = document.createElement("div");
+    newRow.classList.add("row");
+    newRow.setAttribute("id", rowId);
+    mainContainer.appendChild(newRow);
+    return newRow;
+  }else{
+    showResult('intentalo de nuevo')
+  }
+
 }
 
 function drawSquares(actualRow) {
@@ -112,4 +112,14 @@ function addFocus(actualRow) {
   let focusElement = actualRow.querySelector(".focus");
   console.log(focusElement);
   focusElement.focus();
+}
+
+function showResult(textMsg){
+  resultElement.innerHTML = `<p>${textMsg}</p>
+  <button class="button">Reiniciar</button>`;
+
+  let resetBtn = document.querySelector(".button");
+  resetBtn.addEventListener("click", () => {
+    location.reload();
+  });
 }
