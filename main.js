@@ -93,7 +93,7 @@ function createRow() {
     mainContainer.appendChild(newRow);
     return newRow;
   }else{
-    showResult('intentalo de nuevo')
+    showResult(`intentalo de nuevo, la respuesta correcta era "${word.toUpperCase()}"`)
   }
 
 }
