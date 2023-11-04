@@ -45,13 +45,13 @@ h1{
     color: #479c3c;
     cursor: pointer;
 }
-
-.green{
-    background-color: #479c3c;
+.gray{
+    background-color: #847c7c;
 }
 .gold{
     background-color: #b9b419;
 }
-.gray{
-    background-color: #847c7c;
+
+.green{
+    background-color: #479c3c;
 }
